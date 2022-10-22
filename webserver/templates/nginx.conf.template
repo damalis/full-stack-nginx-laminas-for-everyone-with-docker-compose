@@ -37,7 +37,7 @@ server {
 		try_files $uri /index.php$is_args$args;
 	}
 
-	location @php {
+	location ~ \.php$ {
 		# Pass the PHP requests to FastCGI server (php-fpm) on 127.0.0.1:9000
 		fastcgi_pass	docker_laminas;
 		fastcgi_index index.php;
