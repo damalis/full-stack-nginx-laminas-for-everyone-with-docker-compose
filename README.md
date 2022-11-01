@@ -37,6 +37,13 @@ Create rules to open ports to the internet, or to a specific IPv4 address or ran
 - [Manual Configuration and Installation](#manual)
 - [Portainer Installation](#portainer)
 - [Usage](#usage)
+	- [Website](#website)
+	- [Webserver](#webserver)
+	- [Database](#database)
+	- [Redis](#redis)
+	- [Cache](#cache)
+	- [phpMyAdmin](#phpmyadmin)
+	- [backup](#backup)					  
 
 ## Automatic
 
@@ -195,7 +202,7 @@ You can now use the `up` command:
 docker-compose up -d
 ```
 
-#### Docker run reference
+### Docker run reference
 
 [https://docs.docker.com/engine/reference/run/](https://docs.docker.com/engine/reference/run/)
 
@@ -207,21 +214,17 @@ You should see the "Welcome to Laminas MVC Skeleton Application" page in your br
 https://example.com
 ```
 
-add or remove code in the ```./php-fpm/php/conf.d/security.ini``` file for custom php.ini configurations
+add or remove code in the ./php-fpm/php/conf.d/security.ini file for custom php.ini configurations
 
 [https://www.php.net/manual/en/configuration.file.php](https://www.php.net/manual/en/configuration.file.php)
 
-add or remove code in the ```./php-fpm/php-fpm.d/z-www.conf``` file for php-fpm configurations
+You should make changes custom host configurations ```./php-fpm/php-fpm.d/z-www.conf``` then must restart service, FPM uses php.ini syntax for its configuration file - php-fpm.conf, and pool configuration files.
 
-Or you should make changes custom host configurations then must restart service
+[https://www.php.net/manual/en/install.fpm.configuration.php](https://www.php.net/manual/en/install.fpm.configuration.php)
 
 ```
 docker container restart laminas
 ```
-
-FPM uses php.ini syntax for its configuration file - php-fpm.conf, and pool configuration files.
-
-[https://www.php.net/manual/en/install.fpm.configuration.php](https://www.php.net/manual/en/install.fpm.configuration.php)
 
 add and/or remove laminas site folders and files with any ftp client program in ```./laminas/webapp``` folder.
 <br />You can also visit `https://example.com` to access website after starting the containers.
@@ -234,15 +237,13 @@ add or remove code in the ```./webserver/templates/nginx.conf.template``` file f
 
 #### Database
 
-Database abstraction layer, SQL abstraction, result set abstraction, and RowDataGateway and TableDataGateway implementations.
-
 Database host = database
 
 [https://docs.laminas.dev/laminas-db/](https://docs.laminas.dev/laminas-db/)
 
 [https://mariadb.com/kb/en/configuring-mariadb-with-option-files/](https://mariadb.com/kb/en/configuring-mariadb-with-option-files/)
 
-#### Redis and Cache
+#### Redis
 
 ```Laminas\Cache\Storage\Adapter\Redis``` stores cache items over the Redis protocol using the PHP extension PhpRedis.
 
@@ -251,6 +252,8 @@ Redis host = redis
 Redis host port = 6379
 
 [https://docs.laminas.dev/laminas-cache/v3/storage/adapter/#redis-adapter](https://docs.laminas.dev/laminas-cache/v3/storage/adapter/#redis-adapter)
+
+#### Cache
 
 [https://docs.laminas.dev/laminas-cache/](https://docs.laminas.dev/laminas-cache/)
 
