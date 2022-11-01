@@ -67,5 +67,5 @@ server {
 	}
 	#
 	access_log off;
-	error_log  /var/log/nginx/${NGINX_HOST}-443.error.log error;
+	error_log  /var/log/nginx/${NGINX_HOST}.error.log error;
 }
