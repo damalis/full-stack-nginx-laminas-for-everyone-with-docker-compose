@@ -36,7 +36,7 @@ services:
         labels:
             - 'docker-volume-backup.stop-during-backup=true'
         command: >
-            bash -c "apt-get update && sh /tmp/packagecheck.sh 'unzip git libzip-dev libicu-dev' && curl -sSL https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions -o - | sh -s intl pdo_mysql redis zip @composer && 
+            bash -c "apt-get update && sh /tmp/packagecheck.sh 'unzip git libzip-dev libicu-dev' && curl -sSLf https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions -o - | sh -s intl pdo_mysql redis zip @composer && 
             if [ \"$$(ls -A ${WEBSERVER_DOC_ROOT}/public)\" ]; then composer update --working-dir=${WEBSERVER_DOC_ROOT}; else rm -f ${WEBSERVER_DOC_ROOT}/README.md && composer create-project -s stable laminas/laminas-mvc-skeleton . --working-dir=${WEBSERVER_DOC_ROOT} --no-interaction && composer require laminas/laminas-db:* laminas/laminas-developer-tools --working-dir=${WEBSERVER_DOC_ROOT} --no-interaction && composer require laminas/laminas-cache-storage-adapter-redis --working-dir=${WEBSERVER_DOC_ROOT} --no-interaction; fi; 
             TMP=$$(mktemp) && grep -vF 'date.timezone' ${PHP_INI_DIR_PREFIX}/php/conf.d/security.ini > $$TMP && echo 'date.timezone = ${LOCAL_TIMEZONE}' >> $$TMP && cp $$TMP ${PHP_INI_DIR_PREFIX}/php/conf.d/security.ini; php-fpm"
 
